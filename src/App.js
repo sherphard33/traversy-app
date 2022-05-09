@@ -23,10 +23,14 @@ function App() {
         reminder: true
     }
 ])
+
+  const deleteTask = (id) =>{
+    updateTasks(tasks.filter((task) => task.id !== id))
+  }
   return (
     <div className="container">
       <Header title="James" />
-      <Tasks tasks={tasks} />
+      {tasks.length > 0 ? <Tasks tasks={tasks} del={deleteTask}/> : 'No Tasks yet'}
     </div>
   );
 }

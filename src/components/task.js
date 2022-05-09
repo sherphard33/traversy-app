@@ -1,8 +1,8 @@
 import {FaTimes} from 'react-icons/fa';
 
-function Task({task, deleteTask}) {
+function Task({task, deleteTask, onToggle}) {
   return (
-    <div className="task" >
+    <div className="task" onDoubleClick={() => onToggle(task.id)}>
         <h3 >{task.text} <FaTimes onClick={() => deleteTask(task.id)} style={{color:'red', cursor: 'pointer'}}/></h3>
         <p>{task.day}</p>
     </div>

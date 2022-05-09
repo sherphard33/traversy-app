@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import { useState } from "react"
+import InputForm from './components/input-form';
 
 function App() {
   const [tasks, updateTasks] = useState([
@@ -23,14 +24,20 @@ function App() {
         reminder: true
     }
 ])
-
+//Delete task
   const deleteTask = (id) =>{
     updateTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  //Toggle remidner
+  const toggleReminder = (id) =>{
+    updateTasks(tasks.filter((task) => task.id === id ? {...task, reminder:!task.reminder} : task));
   }
   return (
     <div className="container">
       <Header title="James" />
-      {tasks.length > 0 ? <Tasks tasks={tasks} del={deleteTask}/> : 'No Tasks yet'}
+      {tasks.length > 0 ? <Tasks tasks={tasks} del={deleteTask} toggleReminder = {toggleReminder}/> : 'No Tasks yet'}
+      <InputForm />
     </div>
   );
 }
